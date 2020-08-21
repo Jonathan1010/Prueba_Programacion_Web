@@ -2,7 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,7 +17,19 @@
     <h:body>
 
         <div id="top">
-            <ui:insert name="top">Top</ui:insert>
+            <ui:insert name="top">
+                <h1><center><b> LOJA-CAR </b></center></h1>
+                <br>
+                    <li> <a href = "planilla1.xhtml"> INICIO </a></li><br></br>
+                    <li> <a href = "planilla2.xhtml"> OFERTAS</a></li><br></br>
+                    <li> <a href = " "> CONTACTANOS </a></li><br></br>
+                    <li> <a href = " "> SEGUROS </a></li><br></br>
+                    <li> <a href = "planilla3.xhtml"> MAS SOBRE NOSOTROS </a></li>
+                    <br></br>
+
+
+
+            </ui:insert>
         </div>
 
         <div id="content" class="center_content">
@@ -22,7 +37,34 @@
         </div>
 
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom">
+                <h1><center><b> Ingresa Con Nosotros </b></center></h1>
+                <h:form>
+                    <p:panel id="panel" header="New User">
+
+                        <p:messages id="msgs" />
+
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <p:outputLabel for="firstname" value="Firstname:" />
+                            <p:inputText id="firstname" value="#{userView.firstname}" required="true" label="Firstname">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="firstname" display="icon" />
+
+                            <p:outputLabel for="lastname" value="Lastname:" />
+                            <p:inputText id="lastname" value="#{userView.lastname}" label="Lastname" required="true">
+                                <f:validateLength minimum="2" />
+                                <p:ajax update="msgLastname" event="keyup" />
+                            </p:inputText>
+                            <p:message for="lastname" id="msgLastname" display="icon" />
+
+                        </h:panelGrid>
+
+                        <p:commandButton value="Save" update="panel" action="#{userView.save}" icon="pi pi-check" />
+                    </p:panel>
+                </h:form>
+
+            </ui:insert>
         </div>
 
     </h:body>
